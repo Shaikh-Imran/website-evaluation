@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>users</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -63,11 +63,12 @@
   
 <div class="container-fluid text-center body-cont">    
 <div class="row">
-			<div class="col-md-12">
-                <table class="table table-bordered">
+			<div class="col-md-8">
+                <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Row</th>
+                                <th>#</th>
+                                <th>User Name</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
@@ -78,7 +79,8 @@
                             
                        
 				<?php
-				/*How many records you want to show in a single page.*/
+                /*How many records you want to show in a single page.*/
+               
 				$limit = 5;
 				/*How may adjacent page links should be shown on each side of the current page link.*/
 				$adjacents = 2;
@@ -102,11 +104,17 @@
 				$query  = "select * from `users` limit $offset, $limit";
 				$result = mysqli_query($db, $query);
 				if(mysqli_num_rows($result) > 0) {
+
 					while($row = mysqli_fetch_assoc($result)) {
-						echo "<tr><td>".$row['username']."</td>
-                        <td>".$row['uEmail']."</td>
+                        echo "<tr>
+                        <td>".($offset+1)."</td>
+                        <td>".$row['username']."</td>
                         <td>".$row['uFname']."</td>
-                        <td>".$row['uLname']."</td></tr>";
+                        <td>".$row['uLname']."</td>
+                        
+                        <td>".$row['uEmail']."</td>
+                        </tr>";
+                        $offset++;
 					}
 				}
 
