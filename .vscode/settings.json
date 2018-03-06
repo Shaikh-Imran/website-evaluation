@@ -1,4 +1,5 @@
 {
     "editor.wordWrap": "off",
-    "workbench.editor.enablePreview": false
+    "workbench.editor.enablePreview": false,
+    "php.validate.executablePath": "C:\\xampp\\php\\php.exe"
 }

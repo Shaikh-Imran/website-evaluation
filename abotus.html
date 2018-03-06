@@ -48,31 +48,12 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">Home</a></li>
-        <li><a href="userlogin.html">User Login</a></li>
-        <li><a href="adminlogin.html">Admin Login</a></li>
-        <li><a href="register.html">register</a></li>
-        <li><a href="contactus.html">Contact</a></li>
-        <li><a href="abotus.html">about us</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <div class="my-nav"></div>
+    <script>
+               $(function(){
+               $(".my-nav").load("nav.html");
+           });
+        </script>
   
 <div class="container-fluid text-center body-cont">    
   <div class="row content">

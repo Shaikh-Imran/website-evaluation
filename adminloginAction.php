@@ -5,7 +5,7 @@
         $username = $_POST["username"];
         $pwd = $_POST["pwd"];
         
-        $loginSql = "SELECT * FROM member WHERE memberId = '$username' AND memberPwd = '$pwd'";
+        $loginSql = "SELECT * FROM members WHERE mId = '$username' AND mPwd = '$pwd'";
 
         $result = mysqli_query($db, $loginSql);
 

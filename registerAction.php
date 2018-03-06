@@ -10,7 +10,7 @@
         $contact = $_POST['contact'];
         $upwd = $_POST['pwd'];
        
-        $insertUserSql= "INSERT INTO `users`(`username`, `uFname`, `uLname`, `email`, `contact`, `upwd`) VALUES 
+        $insertUserSql= "INSERT INTO `users`(`username`, `uFname`, `uLname`, `uEmail`, `uContact`, `uPwd`) VALUES 
         
         ('$username','$uFname','$uLname','$email','$contact','$upwd')";
 
