@@ -1,5 +1,12 @@
 <?php
  include_once '../include/sqlConnect.php';
+ session_start();
+ if(!isset($_SESSION['member_id'])){
+	echo "<SCRIPT type='text/javascript'> //not showing me this
+	alert('plz login');
+	window.location.replace('../adminlogin.html');
+	</SCRIPT>";
+ }
 ?>
 
 <!DOCTYPE html>
