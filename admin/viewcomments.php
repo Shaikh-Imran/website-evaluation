@@ -110,7 +110,7 @@
 					while($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>
                         <td>".$row['comment_id']."</td>
-                        <td>".$row['website_name']."</td>
+                        <td><a href='".$row['website_name']."'>".$row['website_name']."</a></td>
                         <td>".$row['comment']."</td>
                         <td>".$row['score']."</td>
                         <td>".$row['user_id']."</td>
