@@ -61,17 +61,16 @@
         });
      </script>
   
-<div class="container-fluid text-center body-cont">    
-<div class="row">
-			<div class="col-md-8">
-                <table class="table table-bordered table-striped">
+<div class="container-fluid text-center body-cont center">    
+
+                <table class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>User Name</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
+                                <th  class = "text-center btn-primary">#</th>
+                                <th class = "text-center btn-primary">User Name</th>
+                                <th class = "text-center btn-primary">First Name</th>
+                                <th class = "text-center btn-primary">Last Name</th>
+                                <th class = "text-center btn-primary">Email</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -81,7 +80,7 @@
 				<?php
                 /*How many records you want to show in a single page.*/
                
-				$limit = 5;
+				$limit = 10;
 				/*How may adjacent page links should be shown on each side of the current page link.*/
 				$adjacents = 2;
 				/*Get total number of records */
@@ -172,8 +171,7 @@
 					</ul>
 				<?php } ?>
 				<?php mysqli_close($db); ?>
- 			</div>
- 		</div>
+ 		
 </div>
 
 
