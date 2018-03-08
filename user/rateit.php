@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   <style>
     .body-cont {
       margin-right: 2%;
@@ -98,8 +100,8 @@
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-globe"></i>
                   </span>
+                  <!-- <select class="form-control input-lg js-example-basic-single" id="website" onchange="ifrChange();"> -->
                   <select class="form-control input-lg" id="website" onchange="ifrChange();">
-
                     <?php
                           include_once "../include/sqlConnect.php";
 
@@ -107,7 +109,7 @@
                           $result = mysqli_query($db, $sqlCheck);
                           while($row = mysqli_fetch_assoc($result)){
               
-                            echo "<option value = '".$row['web_id']."' site = '".$row['website_name']."'>".$row['website_name']."</option>";
+                            echo "<option class = 'sll text-large' value = '".$row['web_id']."' site = '".$row['website_name']."'>".$row['website_name']."</option>";
 
                           }
                       ?>
@@ -131,8 +133,7 @@
               <label class="col-md-12 control-label"></label>
               <div class="col-md-12">
                 <br>
-
-                <button type="submit" class="btn btn-lg btn-warning btn-block">Post</button>
+                <button type="submit" class="btn btn-lg btn-warning btn-block" id="post">Post</button>
 
               </div>
             </div>
@@ -166,8 +167,8 @@
                         <i class="glyphicon glyphicon-arrow-right"></i>
                       </th>
 
-                      <th colspan="5" class="text-center btn-warning text-large" id="myScore">0</th>
-                      <th></th>
+                      <th class="text-center btn-warning text-large" id="myScore">0</th>
+
                     </tr>
                     <tr>
 
@@ -201,19 +202,68 @@
         </div>
 
       </div>
+
+
     </div>
-    <div class="col-sm-12">
-      <div class="col text-center">
-        <div class="embed-responsive embed-responsive-4by3">
-          <iframe id="if" class="embed-responsive-item" src="https://glyphicons.bootstrapcheatsheets.com/"></iframe>
-          <div class="embed-responsive  iii">
-          </div>
+    <div class="row content">
+
+
+      <div class="col-sm-6">
+        <div class="well form-horizontal" id="formss">
+          <fieldset>
+            <legend>
+              <center>
+                <h2>
+                  <b>previous comments</b>
+                </h2>
+              </center>
+            </legend>
+            <br>
+         
+
+
+            <div class="row" id="comment">
+                <div class="col-sm-2">
+                    <div class="thumbnail">
+                    <img class="img-responsive user-photo" src="../img/avatar_2x.png">
+                    </div>
+                    </div>
+                    
+                    <div class="col-sm-10">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <strong id="user"></strong>
+                    </div>
+                    <div class="panel-body" id="cmt">
+                   
+                    </div>
+                    </div>
+                    </div>
+              
+            </div>
+
+
+          </fieldset>
         </div>
 
-      </div>
-    </div>
 
-  </div>
+      </div>
+
+
+      <div class="col-sm-6">
+        <div class="col text-center">
+          <div class="embed-responsive embed-responsive-4by3">
+            <iframe id="if" class="embed-responsive-item" src="https://glyphicons.bootstrapcheatsheets.com/"></iframe>
+            <div class="embed-responsive  iii">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
   </div>
 
 
@@ -221,16 +271,20 @@
 
 
 <script>
-  var token = "your token here";
+  var token = "0fce4b9b25af4337a0cbfb6b31eb296e";
   var website;
   $(function () {
     $(".my-nav").load("nav.php");
+    $('.js-example-basic-single').select2();
   });
 
   $("#formss").on('submit', function (e) {
 
     e.preventDefault();
     var comment = $("#cmt").val();
+    $("#post").html("Posting..");
+    $("#post").attr("disabled", true);
+
     $.post("https://api.dandelion.eu/datatxt/sent/v1", {
 
       lang: "en",
@@ -239,6 +293,8 @@
     }, function (data) {
 
       // console.log(data.sentiment.score);
+      $("#post").attr("disabled", false);
+      $("#post").html("Post..");
       postDb(data.sentiment.score, data.sentiment.type, comment);
     }
     );
@@ -256,6 +312,7 @@
 
     }, function (data) {
       //  console.log(data);
+      $("#cmt").val("");
       var s = data.split("::");
       updateScores(score, s[0], s[1]);  // console.log(s);
     });
@@ -265,20 +322,55 @@
 
   function updateScores(my, max, avg) {
     // console.log(m);
-    $("#myScore").html(my);
+    $("#myScore").html(my * 10);
     $("#maxScore").html(max);
     $("#avgScore").html(avg);
+    alert("your comments are added");
 
 
   }
   function ifrChange() {
 
     var web = $("#website").find(':selected').attr('site');
-
     $("#if").attr('src', web);
-    // console.log(web);
+    $.post("userinput.php",{
+        webIdd:$("#website").val()
 
+    },function(data){
+        populateCmt(data);
+    });
 
+  }
+  function populateCmt(data){
+
+    //  console.log(data);
+    data = JSON.parse(data);
+    var i=0;
+    $("#comment").empty();
+    $.each(data, function(key,value) {
+      $("#comment").append(" <div class='col-sm-2'>\
+    <div class='thumbnail'>\
+    <img class='img-responsive user-photo' src='../img/avatar_2x.png'>\
+    </div>\
+    </div>\
+    <div class='col-sm-10'>\
+    <div class='panel panel-primary'>\
+    <div class='panel-heading '>\
+    <strong id='user'>"+value.user_id+"</strong>\
+    </div>\
+    <div class='panel-body' id='cmt1'>"+value.comment+"\
+    </div>\
+    </div>\
+    </div> ");
+   
+      
+}); 
+  }
+  function filld(user,cmt,i){
+
+   
+    return 0;
+    
   }
 
 </script>

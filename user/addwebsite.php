@@ -3,12 +3,16 @@
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>Add a WebSite</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.caret.min.js"></script>
+    <script src="../js/jquery.tag-editor.min.js"></script>
+    <link rel="stylesheet" href="../css/jquery.tag-editor.css?v5282">
+
     <style>
         .body-cont {
             margin-right: 2%;
@@ -67,6 +71,11 @@
             height: 100%;
             opacity: 0;
         }
+        #website{
+            padding:30px;
+            font-size:30px;
+        }
+      
     </style>
 </head>
 
@@ -90,21 +99,37 @@
                         <br>
                         <div class="form-group">
                             <div class="col-md-12 inputGroupContainer">
+                            <h3>
+                                    <b>Website Name</b>
+                                </h3>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-globe"></i>
                                     </span>
-                                    <input placeholder="http://www.example.com" class="form-control input-lg" type="url" id="website">
+                                    <input placeholder="http://www.example.com" class="form-control input-lg" type="url" id="website" required>
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label class="col-md-12 control-label"></label>
+                            <div class="col-md-12 inputGroupContainer">
+                            <h3>
+                                    <b>For Keywords</b>
+                                </h3>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                    </span>
+                                    <textarea id="tag-in" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label class="col-sm-6 control-label"></label>
                             <div class="col-md-12">
                                 <br>
 
-                                <button type="submit" class="btn btn-lg btn-warning btn-block" name="login">Add WebSite</button>
+                                <button type="submit" class="btn btn-lg btn-primary" id="addWebsite">Add WebSite</button>
 
                             </div>
                         </div>
@@ -138,6 +163,9 @@
     var website;
     $(function () {
         $(".my-nav").load("nav.php");
+        $('#tag-in').tagEditor({
+            placeholder: 'Add keywords here.seperate by  comma(,)/enter'
+        });
     });
 
     $("#formss").on('submit', function (e) {
@@ -151,10 +179,16 @@
         else {
     
                 $("#if").attr('src', website);
-        
+                // console.log($('#tag-in').val());
+
+            $("#addWebsite").html("Adding..");
+            $("#addWebsite").attr("disabled", true);
+           
+           
             $.post("userinput.php",{
                 addweb : 1,
                 website : website,
+                tags:$('#tag-in').val()
             },function(data){
                 console.log(data);
 
@@ -167,7 +201,10 @@
 
             );
 
-            console.log(website);
+            // console.log(website);
+            $("#addWebsite").html("Add WebSite");
+            $("#addWebsite").attr("disabled", false);
+           
 
         }
 
