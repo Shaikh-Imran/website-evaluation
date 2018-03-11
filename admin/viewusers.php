@@ -1,12 +1,6 @@
 <?php
  include_once '../include/sqlConnect.php';
- session_start();
- if(!isset($_SESSION['member_id'])){
-	echo "<SCRIPT type='text/javascript'> //not showing me this
-	alert('plz login');
-	window.location.replace('../adminlogin.html');
-	</SCRIPT>";
- }
+
 ?>
 
 <!DOCTYPE html>
@@ -20,43 +14,43 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
 
-  .body-cont{
-      margin-right : 30px;
-      margin-left : 30px;
-  }
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
-      body{
-          max-width : 700px;
-      }
+	.body-cont{
+		margin-right : 30px;
+		margin-left : 30px;
+	}
+		/* Remove the navbar's default margin-bottom and rounded borders */ 
+		.navbar {
+		margin-bottom: 0;
+		border-radius: 0;
+		}
+		
+		/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+		.row.content {height: 450px}
+		
+		/* Set gray background color and 100% height */
+		.sidenav {
+		padding-top: 20px;
+		background-color: #f1f1f1;
+		height: 100%;
+		}
+		
+		/* Set black background color, white text and some padding */
+		footer {
+		background-color: #555;
+		color: white;
+		padding: 15px;
+		}
+		
+		/* On small screens, set height to 'auto' for sidenav and grid */
+		@media screen and (max-width: 767px) {
+		.sidenav {
+			height: auto;
+			padding: 15px;
+		}
+		.row.content {height:auto;}
+		body{
+			max-width : 700px;
+		}
     }
   </style>
 </head>
@@ -64,9 +58,15 @@
  <div class="my-nav"></div>
  <script>
             $(function(){
-            $(".my-nav").load("nav.html");
+            $(".my-nav").load("nav.php");
         });
-     </script>
+	 </script>
+	 <div class="container">
+  <div class="page-header text-center">
+    <h1>USERS LIST</h1>      
+  </div>
+  
+</div>
   
 <div class="container-fluid text-center body-cont center">    
 

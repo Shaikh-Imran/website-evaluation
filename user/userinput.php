@@ -22,13 +22,18 @@ if(isset($_POST['addweb'])){
 
 if(isset($_POST['score'])){
 
-    $score = $_POST['score']*10;
+    $score = $_POST['score'];
     $cmt = $_POST['cmt'];
     $type = $_POST['type'];
     $webId= $_POST['webId'];
-
-    $comment = "INSERT INTO `webcomment`(`web_id`, `user_id`, `comment`, `score`, `type`) VALUES 
-    ('$webId','$user','$cmt','$score','$type')";
+    $countss = 1;
+    $co ="SELECT COUNT(*) 'sco' FROM `webcomment` where web_id = '$webId' and score = '$score'";
+    $sc = mysqli_query($db, $co);
+    if($row = mysqli_fetch_assoc($sc)){
+        $countss = $row['sco']+1;
+    }
+    $comment = "INSERT INTO `webcomment`(`web_id`, `user_id`, `comment`, `score`, `type`,`count`) VALUES 
+    ('$webId','$user','$cmt','$score','$type','$countss')";
     //  if(mysqli_query($db, $comment))
 
     if(mysqli_query($db, $comment)){
@@ -38,6 +43,9 @@ if(isset($_POST['score'])){
         if($row = mysqli_fetch_assoc($result)){
             echo $row['max']."::".$row['avg_score'];
         }
+        $co ="update  `webcomment` set count = '$countss' where web_id = '$webId' and score = '$score'";
+      mysqli_query($db, $co);
+        
     }
     else
         echo "error";

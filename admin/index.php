@@ -1,12 +1,4 @@
-<?php
-	session_start();
-if(!isset($_SESSION['member_id'])){
-	echo "<SCRIPT type='text/javascript'> //not showing me this
-	alert('plz login');
-	window.location.replace('../adminlogin.html');
-	</SCRIPT>";
- }
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +55,7 @@ if(!isset($_SESSION['member_id'])){
  <div class="my-nav"></div>
  <script>
             $(function(){
-            $(".my-nav").load("nav.html");
+            $(".my-nav").load("nav.php");
         });
      </script>
   

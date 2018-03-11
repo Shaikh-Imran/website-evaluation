@@ -1,12 +1,6 @@
 <?php
  include_once '../include/sqlConnect.php';
- session_start();
- if(!isset($_SESSION['member_id'])){
-	echo "<SCRIPT type='text/javascript'> //not showing me this
-	alert('plz login');
-	window.location.replace('../adminlogin.html');
-	</SCRIPT>";
- }
+
 ?>
 
 <!DOCTYPE html>
@@ -64,9 +58,15 @@
  <div class="my-nav"></div>
  <script>
             $(function(){
-            $(".my-nav").load("nav.html");
+            $(".my-nav").load("nav.php");
         });
-     </script>
+	 </script>
+	   <div class="page-header text-center">
+    <h1>FEEDBACK OF USERS FOR OUR SITES</h1>      
+  </div>
+  
+</div>
+  
   
 <div class="container-fluid text-center body-cont center">    
 

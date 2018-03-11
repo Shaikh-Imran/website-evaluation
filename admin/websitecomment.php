@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>comments</title>
+  <title>WEBSITE comments</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -59,10 +59,11 @@
  <script>
             $(function(){
             $(".my-nav").load("nav.php");
+
         });
 	 </script>
 	   <div class="page-header text-center">
-    <h1>ALL THE COMMENTS OF USERS </h1>      
+    <h1>AVERAGE SCORE FOR WEBSITES </h1>      
   </div>
   
 </div>
@@ -75,7 +76,7 @@
                             <tr>
                                 <th  class = "text-center btn-primary">#</th>
                                 <th class = "text-center btn-primary">WebSite</th>
-                                <th class = "text-center btn-primary">Comment</th>
+                              
                                 <th class = "text-center btn-primary">Score</th>
                                 <th class = "text-center btn-primary">user</th>
                             </tr>
@@ -91,7 +92,7 @@
 				/*How may adjacent page links should be shown on each side of the current page link.*/
 				$adjacents = 2;
 				/*Get total number of records */
-				$sql = "SELECT COUNT(*) 'total_rows' FROM `webcomment`";
+				$sql = "SELECT COUNT(*) 'total_rows' FROM `websites`";
 				$res = mysqli_fetch_object(mysqli_query($db, $sql));
 				$total_rows = $res->total_rows;
 				/*Get the total number of pages.*/
@@ -107,20 +108,19 @@
 				}
 
 
-                $query  = "SELECT webcomment.comment_id, websites.website_name,webcomment.user_id, webcomment.comment, webcomment.score
-                    FROM webcomment
-                    LEFT JOIN websites ON webcomment.web_id= websites.web_id
+                $query  = "SELECT *
+                    FROM websites
                     limit $offset, $limit";
 				$result = mysqli_query($db, $query);
 				if(mysqli_num_rows($result) > 0) {
 
 					while($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>
-                        <td>".$row['comment_id']."</td>
+                        <td>".$row['web_id']."</td>
                         <td><a href='".$row['website_name']."'>".$row['website_name']."</a></td>
-                        <td>".$row['comment']."</td>
-                        <td>".$row['score']."</td>
-                        <td>".$row['user_id']."</td>
+                        <td>".$row['avg_score']."</td>
+
+                        
                        
                         </tr>";
                        

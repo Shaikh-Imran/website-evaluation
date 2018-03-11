@@ -13,6 +13,7 @@
           <li class="active"><a href="index.php">Home</a></li>
           <li><a href="viewusers.php">View Users</a></li>
           <li><a href="viewcomments.php">View Comments</a></li>
+          <li><a href="websitecomment.php">websites Comments</a></li>
           <li><a href="viewfeedback.php">View Feedback</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

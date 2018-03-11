@@ -305,7 +305,7 @@
     var webId = $("#website").val();
     // console.log(webId);
     $.post("userinput.php", {
-      score: score,
+      score: (((score -(-10)) * 10) / 20) + 0,
       type: type,
       cmt: cmt,
       webId: webId
