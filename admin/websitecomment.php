@@ -10,9 +10,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <style>
+
+   img {
+	   border-radius: 50%;
+	   width: 3em;
+        
+          transition:         transform .8s ease-in-out;
+}
+.imgs:hover {
+          transform: rotate(360deg);
+}
+
+
 
   .body-cont{
       margin-right : 30px;
@@ -74,11 +86,11 @@
                 <table class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
-                                <th  class = "text-center btn-primary">#</th>
+								<th  class = "text-center btn-primary">#</th>
+								<th class = "text-center btn-primary">go</th>
                                 <th class = "text-center btn-primary">WebSite</th>
-                              
                                 <th class = "text-center btn-primary">Score</th>
-                                <th class = "text-center btn-primary">user</th>
+                                <th class = "text-center btn-primary">remark</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -116,12 +128,12 @@
 
 					while($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>
-                        <td>".$row['web_id']."</td>
-                        <td><a href='".$row['website_name']."'>".$row['website_name']."</a></td>
-                        <td>".$row['avg_score']."</td>
-
-                        
-                       
+						<td>".$row['web_id']."</td>
+						<td><a href='".$row['website_name']."'><i class='glyphicon glyphicon-globe'></a></td>
+                        <td>".$row['website_name']."</td>
+						<td>".$row['avg_score']."</td>
+						<td><img class = 'imgs img-responsive' src='../img/".$row['remark'].".png' alt ='".$row['remark']."' />
+						</td>
                         </tr>";
                        
 					}

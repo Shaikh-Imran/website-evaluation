@@ -2,6 +2,9 @@
 session_start();
 $user = $_SESSION['user_id'];
 include_once "../include/sqlConnect.php";
+
+
+//adding websites
 if(isset($_POST['addweb'])){
 
     $web = $_POST['website'];
@@ -20,6 +23,7 @@ if(isset($_POST['addweb'])){
 
 }
 
+//storing webcomment and score as well as calculation avg and storring it in websites
 if(isset($_POST['score'])){
 
     $score = $_POST['score'];
@@ -27,31 +31,35 @@ if(isset($_POST['score'])){
     $type = $_POST['type'];
     $webId= $_POST['webId'];
     $countss = 1;
-    $co ="SELECT COUNT(*) 'sco' FROM `webcomment` where web_id = '$webId' and score = '$score'";
-    $sc = mysqli_query($db, $co);
-    if($row = mysqli_fetch_assoc($sc)){
-        $countss = $row['sco']+1;
-    }
-    $comment = "INSERT INTO `webcomment`(`web_id`, `user_id`, `comment`, `score`, `type`,`count`) VALUES 
-    ('$webId','$user','$cmt','$score','$type','$countss')";
-    //  if(mysqli_query($db, $comment))
+    
+    //inserting to webcomment given comment and score
+    
+    $comment = "INSERT INTO `webcomment`(`web_id`, `user_id`, `comment`, `score`, `type`) VALUES 
+    ('$webId','$user','$cmt','$score','$type')";
+    
 
     if(mysqli_query($db, $comment)){
-     
+        // update avg score image
+
+            $co ="select avg_score from websites  where web_id = '$webId'";
+             if($row = mysqli_fetch_assoc(mysqli_query($db, $co))){
+                $co =" update  `websites` set remark = '".imgsrc($row['avg_score'])."' where web_id = '$webId'";
+                mysqli_query($db, $co);
+            }
+            
+        }
+     //returnmax and avg score
         $scores = "SELECT MAX(webcomment.score) as 'max' ,websites.avg_score from webcomment,websites where webcomment.web_id ='$webId'  and websites.web_id = '$webId'";
         $result = mysqli_query($db, $scores);
         if($row = mysqli_fetch_assoc($result)){
             echo $row['max']."::".$row['avg_score'];
         }
-        $co ="update  `webcomment` set count = '$countss' where web_id = '$webId' and score = '$score'";
-      mysqli_query($db, $co);
-        
-    }
+       
     else
         echo "error";
 
 }
-
+//return comments of users
 if(isset($_POST['webIdd'])){
 
     $webId = $_POST['webIdd'];
@@ -65,14 +73,19 @@ if(isset($_POST['webIdd'])){
 
 }
 
+
+//for search engine
 if(isset($_POST['searchWebsite'])){
 
     $searchWebsite = $_POST['searchWebsite'];
     $type = $_POST['type'];
-      $sql = "SELECT website_name,avg_score,tags from websites WHERE ";
+      $sql = "SELECT * from websites WHERE ";
+
+      //for excact match
       
       if($type=="match")
          $sql.= "MATCH(tags) Against('$searchWebsite') ORDER BY avg_score DESC";
+         //for tags contaionun gthose words
       else
         $sql.= "tags LIKE '%$searchWebsite%' ORDER BY avg_score DESC";
      
@@ -88,6 +101,23 @@ if(isset($_POST['searchWebsite'])){
   
 
 }
+
+if(isset($_POST['post'])){
+
+    $cmt = $_POST['cmt'];
+
+    $feedbacks = "INSERT INTO `feedback`(`uid`, `feedback`) VALUES 
+    ('$user','$cmt')";
+    if( mysqli_query($db, $feedbacks))
+     echo "<SCRIPT type='text/javascript'> 
+     alert('feedback successfull');
+     window.location.replace('feedback.php');
+     </SCRIPT>";
+
+    
+    
+  }
+  
 
 
 ?>

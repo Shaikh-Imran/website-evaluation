@@ -7,11 +7,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  
+  
+  
   <style>
+
+    img {
+	   border-radius: 50%;
+	   width: 3em;
+        
+          transition:         transform .8s ease-in-out;
+}
+.imgs:hover {
+          transform: rotate(360deg);
+}
     .body-cont {
       margin-right: 2%;
       margin-left: 2%;
@@ -168,7 +181,7 @@
                       </th>
 
                       <th class="text-center btn-warning text-large" id="myScore">0</th>
-
+                      <th class="text-center" id="mimg"></th>    
                     </tr>
                     <tr>
 
@@ -178,6 +191,7 @@
                       </th>
 
                       <th class="text-center btn-warning text-large" id="maxScore">0</th>
+                      <th class="text-center" id="ximg"></th>  
                     </tr>
                     <tr>
 
@@ -187,6 +201,7 @@
                       </th>
 
                       <th class="text-center btn-warning text-large" id="avgScore">0</th>
+                      <th class="text-center" id="aimg"></th>  
                     </tr>
                   </thead>
 
@@ -253,7 +268,7 @@
       <div class="col-sm-6">
         <div class="col text-center">
           <div class="embed-responsive embed-responsive-4by3">
-            <iframe id="if" class="embed-responsive-item" src="https://glyphicons.bootstrapcheatsheets.com/"></iframe>
+            <iframe id="if" class="embed-responsive-item" src="rateit.php"></iframe>
             <div class="embed-responsive  iii">
             </div>
           </div>
@@ -285,19 +300,20 @@
     $("#post").html("Posting..");
     $("#post").attr("disabled", true);
 
-    $.post("https://api.dandelion.eu/datatxt/sent/v1", {
+    // $.post("https://api.dandelion.eu/datatxt/sent/v1", {
 
-      lang: "en",
-      text: comment,
-      token: token
-    }, function (data) {
+    //   lang: "en",
+    //   text: comment,
+    //   token: token
+    // }, function (data) {
 
-      // console.log(data.sentiment.score);
+    //   // console.log(data.sentiment.score);
       $("#post").attr("disabled", false);
-      $("#post").html("Post..");
-      postDb(data.sentiment.score, data.sentiment.type, comment);
-    }
-    );
+      $("#post").html("Post");
+    //   postDb(((((data.sentiment.score)*10-(-10)) * 10) / 20) + 0, data.sentiment.type, comment);
+      postDb(((((comment)*10-(-10)) * 10) / 20) + 0, 'p', 'dfgdfg');
+    // }
+    // );
   });
 
   function postDb(score, type, cmt) {
@@ -305,7 +321,7 @@
     var webId = $("#website").val();
     // console.log(webId);
     $.post("userinput.php", {
-      score: (((score -(-10)) * 10) / 20) + 0,
+      score: score,
       type: type,
       cmt: cmt,
       webId: webId
@@ -322,9 +338,12 @@
 
   function updateScores(my, max, avg) {
     // console.log(m);
-    $("#myScore").html(my * 10);
+    $("#myScore").html(my);
     $("#maxScore").html(max);
     $("#avgScore").html(avg);
+    $("#mimg").html("<img class = 'imgs img-responsive' src='../img/"+imgsrc(my)+".png' alt ='"+imgsrc(my)+"' />");
+    $("#ximg").html("<img class = 'imgs img-responsive' src='../img/"+imgsrc(max)+".png' alt ='"+imgsrc(max)+"' />");
+    $("#aimg").html("<img class = 'imgs img-responsive' src='../img/"+imgsrc(avg)+".png' alt ='"+imgsrc(avg)+"' />");
     alert("your comments are added");
 
 
@@ -366,12 +385,27 @@
       
 }); 
   }
-  function filld(user,cmt,i){
+  function imgsrc(scos){
+		if(scos<2)
+			return 'totallynegative';
+		else if(scos<3.5)
+			return 'verynegative';
 
-   
-    return 0;
-    
-  }
+		else if(scos<5)
+			return 'negative';
+		
+		else if(scos<5.5)
+			return 'neutral';
+		
+		else if(scos<7)
+			return 'positive';
+
+		else if(scos<8.5)
+			return 'verypositive';
+		
+		else
+			return 'totallypositive';
+	}
 
 </script>
 

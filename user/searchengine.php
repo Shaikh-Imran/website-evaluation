@@ -3,13 +3,24 @@
 <html lang="en">
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>my google</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
+   <style>
+
+      img {
+	   border-radius: 50%;
+	   width: 3em;
+        
+          transition:         transform .8s ease-in-out;
+}
+.imgs:hover {
+          transform: rotate(360deg);
+}
+
     .body-cont {
       margin-right: 30px;
       margin-left: 30px;
@@ -109,7 +120,7 @@
                 <div class="col-md-12">
                   <br>
 
-                  <button type="submit" class="btn btn-lg btn-primary" id="search">Search searchWebsite</button>
+                  <button type="submit" class="btn btn-lg btn-primary" id="search">Search Website</button>
 
                 </div>
               </div>
@@ -123,29 +134,32 @@
 
 
       </div>
-      <div class="row" >
-        <div class="form-group">
-          <div class="col-md-12 inputGroupContainer">
-            <table class="table table-striped text-center">
-              <thead id = "result">
-               
-              </thead>
-            </table>
 
-          </div>
-        </div>
-
-
-
-
-        </fieldset>
       </div>
     </div>
 
+    <div class="container-fluid text-center body-cont center ">   
+        <div class="row content"> 
+            <div class="col-sm-12">
 
-    </div>
+      <table class="table table-bordered table-striped text-center">
+              <thead>
+                  <tr>
+                      <th  class = "text-center btn-primary">go</th>
+                      <th class = "text-center btn-primary">WebSite</th>
+                    
+                      <th class = "text-center btn-primary">Score</th>
+                      <th class = "text-center btn-primary">remark</th>
+                  </tr>
+              </thead>
+              <tbody id = 'result'>
 
-    </div>
+                </tbody>
+                </table>
+                </div>
+              </div>
+            </div>
+
 
 
 
@@ -185,41 +199,23 @@
         }, function (data) {
           console.log(data);
           data = JSON.parse(data);
-          $("#result").empty();
-          $("#result").append("<tr>\
-                    <th class='col-sm-6 btn btn-lg btn-success text-large'>\
-                     <a href='website name'> \
-                        <i class='glyphicon glyphicon-globe'></i>\
-                  </a>\
-                    </th>\
-                    <th class='text-center btn-primary text-large'>avgsco re</th>\
-                    \
-                    \
-                       \
-                            <th class='text-center btn-warning text-large' >tags</th>\
-                          </tr><tr><th></th></tr><tr></tr><th></th></tr>\
-                         ");
 
-          $.each(data, function (key, web) {
+          $('#result').empty();
+          $.each(data, function (key, data) {
 
-            $("#result").append("<tr>\
-                    <th class='col-sm-6 btn btn-lg btn-success text-large'>\
-                     "+web.website_name+"<a href='"+web.website_name+"'> \
-                        <i class='glyphicon glyphicon-globe'></i>\
-                  </a>\
-                    </th>\
-                    <th class='text-center btn-primary text-large'>"+web.avg_score+"</th>\
-                    \
-                    \
-                       \
-                            <th class='text-center btn-warning text-large' >"+web.tags+"</th>\
-                          </tr><tr><th></th></tr><tr></tr><th></th></tr>\
-                         ");
+          $('#result').append("<tr>\
+                        <td><a href='"+data.website_name+"'><i class='glyphicon glyphicon-globe'></a></i></td>\
+                        <td>"+data.website_name+"</td>\
+						<td>"+data.avg_score+"</td>\
+						<td><img class = 'imgs img-responsive' src='../img/"+data.remark+".png' alt ='"+data.remark+"' />\
+						</td></tr>");
 
+          
+        });
           });
-        }
+        
 
-        );
+     
 
         // console.log(searchWebsite);
         $("#search").html("Search searchWebsite");

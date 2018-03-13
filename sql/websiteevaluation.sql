@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2018 at 08:58 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Generation Time: Mar 13, 2018 at 05:22 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 5.6.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,6 +34,14 @@ CREATE TABLE `feedback` (
   `feedback` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`fid`, `uid`, `feedback`) VALUES
+(1, '1', 'asdfasdfasdfasdf'),
+(2, '1', 'good website');
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +53,13 @@ CREATE TABLE `members` (
   `mPwd` varchar(16) NOT NULL,
   `mName` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`mId`, `mPwd`, `mName`) VALUES
+('1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -79,7 +94,7 @@ CREATE TABLE `webcomment` (
   `web_id` int(10) NOT NULL,
   `user_id` varchar(50) NOT NULL,
   `comment` varchar(800) NOT NULL,
-  `score` int(10) NOT NULL,
+  `score` float NOT NULL,
   `type` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -88,34 +103,14 @@ CREATE TABLE `webcomment` (
 --
 
 INSERT INTO `webcomment` (`comment_id`, `web_id`, `user_id`, `comment`, `score`, `type`) VALUES
-(1, 1, '1', 'good', 7, 'positive'),
-(2, 1, '1', 'yes', 0, 'neutral'),
-(3, 1, '1', 'not bad', 0, 'neutral'),
-(6, 4, '1', 'a good website but better design', 7, 'positive'),
-(7, 4, '1', 'a good website but better design', 7, 'positive'),
-(8, 4, '1', 'a good website but better design', 7, 'positive'),
-(9, 4, '1', 'a good website but better design', 7, 'positive'),
-(10, 4, '1', 'bad', -7, 'negative'),
-(11, 1, '1', 'bad', -7, 'negative'),
-(12, 2, '1', 'bad', -7, 'negative'),
-(13, 3, '1', 'bad', -7, 'negative'),
-(14, 1, '1', 'excellent', 9, 'positive'),
-(15, 1, '1', 'excellent', 9, 'positive'),
-(16, 2, '1', 'excellent', 9, 'positive'),
-(17, 3, '1', 'excellent', 9, 'positive'),
-(18, 4, '1', 'excellent', 9, 'positive'),
-(19, 4, '1', 'excellent', 9, 'positive'),
-(20, 4, '1', 'excellent', 9, 'positive'),
-(21, 3, '1', 'excellent', 9, 'positive'),
-(22, 1, '1', 'excellent', 9, 'positive'),
-(23, 2, '1', 'excellent', 9, 'positive'),
-(24, 4, '1', 'excellent', 9, 'positive'),
-(25, 4, '1', 'excellent', 9, 'positive'),
-(26, 1, '1', 'good', 7, 'positive'),
-(27, 1, '1', 'good', 7, 'positive'),
-(28, 2, '1', 'good', 7, 'positive'),
-(29, 1, '1', 'good', 7, 'positive'),
-(30, 1, '1', 'good', 7, 'positive');
+(104, 1, '1', 'dfgdfg', 9.5, 'p'),
+(105, 1, '1', 'dfgdfg', 9.5, 'p'),
+(106, 1, '1', 'dfgdfg', 0.5, 'p'),
+(107, 2, '1', 'dfgdfg', 7, 'p'),
+(108, 2, '1', 'dfgdfg', 8.5, 'p'),
+(109, 2, '1', 'dfgdfg', 5.5, 'p'),
+(110, 2, '1', 'dfgdfg', 6.5, 'p'),
+(111, 2, '1', 'dfgdfg', 7, 'p');
 
 --
 -- Triggers `webcomment`
@@ -139,18 +134,19 @@ CREATE TABLE `websites` (
   `web_id` int(10) NOT NULL,
   `add_by_user` varchar(50) NOT NULL,
   `tags` varchar(500) NOT NULL,
-  `avg_score` float NOT NULL
+  `avg_score` float NOT NULL,
+  `remark` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `websites`
 --
 
-INSERT INTO `websites` (`website_name`, `web_id`, `add_by_user`, `tags`, `avg_score`) VALUES
-('https://yahoo.com', 1, '1', 'search,bad,hard', 5),
-('https://glyphicons.bootstrapcheatsheets.com/', 2, '1', 'bad,good,icons', 4.5),
-('google.co.in', 3, '1', 'search,engi,easy', 3.66667),
-('http://www.geeksengine.com', 4, '1', 'website,web', 6.6);
+INSERT INTO `websites` (`website_name`, `web_id`, `add_by_user`, `tags`, `avg_score`, `remark`) VALUES
+('https://yahoo.com', 1, '1', 'search,bad,hard', 6.5, 'positive'),
+('https://glyphicons.bootstrapcheatsheets.com/', 2, '1', 'bad,good,icons', 6.9, 'positive'),
+('google.co.in', 3, '1', 'search,engi,easy', 5, 'neutral'),
+('http://www.geeksengine.com', 4, '1', 'website,web', 1.4, 'totallynegative');
 
 --
 -- Indexes for dumped tables
@@ -195,17 +191,20 @@ ALTER TABLE `websites` ADD FULLTEXT KEY `tags` (`tags`);
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `fid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `fid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `webcomment`
 --
 ALTER TABLE `webcomment`
-  MODIFY `comment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `comment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+
 --
 -- AUTO_INCREMENT for table `websites`
 --
 ALTER TABLE `websites`
-  MODIFY `web_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
+  MODIFY `web_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

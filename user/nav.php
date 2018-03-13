@@ -22,7 +22,7 @@ echo "<nav class='navbar navbar-inverse right'>
       <li class='active'><a href='index.php'>Home</a></li>
       <li><a href='addwebsite.php'>Add Websites</a></li>
       <li><a href='rateit.php'>Rate It</a></li>
-      <li><a href='serchengine.php'>Search Engine</a></li>
+      <li><a href='searchengine.php'>Search Engine</a></li>
       <li><a href='feedback.php'>Feedback</a></li>
     </ul>
     <ul class='nav navbar-nav navbar-right'>
