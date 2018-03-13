@@ -300,20 +300,20 @@
     $("#post").html("Posting..");
     $("#post").attr("disabled", true);
 
-    // $.post("https://api.dandelion.eu/datatxt/sent/v1", {
+    $.post("https://api.dandelion.eu/datatxt/sent/v1", {
 
-    //   lang: "en",
-    //   text: comment,
-    //   token: token
-    // }, function (data) {
+      lang: "en",
+      text: comment,
+      token: token
+    }, function (data) {
 
     //   // console.log(data.sentiment.score);
       $("#post").attr("disabled", false);
       $("#post").html("Post");
-    //   postDb(((((data.sentiment.score)*10-(-10)) * 10) / 20) + 0, data.sentiment.type, comment);
+      postDb(((((data.sentiment.score)*10-(-10)) * 10) / 20) + 0, data.sentiment.type, comment);
       postDb(((((comment)*10-(-10)) * 10) / 20) + 0, 'p', 'dfgdfg');
-    // }
-    // );
+    }
+    );
   });
 
   function postDb(score, type, cmt) {
