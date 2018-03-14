@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+if(!isset($_SESSION['member_id'])){
+	echo "<SCRIPT type='text/javascript'> //not showing me this
+	alert('plz login');
+	window.location.replace('../userlogin.html');
+	</SCRIPT>";
+ }
+
+
+
+?>
+
 <nav class="navbar navbar-inverse right">
     <div class="container-fluid">
       <div class="navbar-header">

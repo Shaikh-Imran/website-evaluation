@@ -311,7 +311,7 @@
       $("#post").attr("disabled", false);
       $("#post").html("Post");
       postDb(((((data.sentiment.score)*10-(-10)) * 10) / 20) + 0, data.sentiment.type, comment);
-      postDb(((((comment)*10-(-10)) * 10) / 20) + 0, 'p', 'dfgdfg');
+      //postDb(((((comment)*10-(-10)) * 10) / 20) + 0, 'p', 'dfgdfg');
     }
     );
   });

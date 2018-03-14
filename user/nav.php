@@ -7,7 +7,12 @@ if(!isset($_SESSION['user_id'])){
 	window.location.replace('../userlogin.html');
 	</SCRIPT>";
  }
-echo "<nav class='navbar navbar-inverse right'>
+
+
+
+?>
+
+<nav class='navbar navbar-inverse right'>
 <div class='container-fluid'>
   <div class='navbar-header'>
     <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
@@ -31,7 +36,4 @@ echo "<nav class='navbar navbar-inverse right'>
     </ul>
   </div>
 </div>
-</nav>";
-
-
-?>
+</nav>

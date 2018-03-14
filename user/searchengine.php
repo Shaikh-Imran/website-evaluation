@@ -10,8 +10,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <style>
+     td img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
 
       img {
+        
 	   border-radius: 50%;
 	   width: 3em;
         
@@ -133,13 +140,7 @@
         </div>
 
 
-      </div>
-
-      </div>
-    </div>
-
-    <div class="container-fluid text-center body-cont center ">   
-        <div class="row content"> 
+     
             <div class="col-sm-12">
 
       <table class="table table-bordered table-striped text-center">
@@ -204,10 +205,10 @@
           $.each(data, function (key, data) {
 
           $('#result').append("<tr>\
-                        <td><a href='"+data.website_name+"'><i class='glyphicon glyphicon-globe'></a></i></td>\
+                        <td><a href='"+data.website_name+"' target='_blank'><i class='glyphicon glyphicon-search'></i></a></td>\
                         <td>"+data.website_name+"</td>\
 						<td>"+data.avg_score+"</td>\
-						<td><img class = 'imgs img-responsive' src='../img/"+data.remark+".png' alt ='"+data.remark+"' />\
+						<td><img class = 'imgs img-responsive center' src='../img/"+data.remark+".png' alt ='"+data.remark+"' />\
 						</td></tr>");
 
           

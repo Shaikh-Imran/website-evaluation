@@ -87,12 +87,16 @@
             </legend>
             <br>
             
-           
+            <div class="form-group">
+              <label class="col-sm-12 control-label"></label>
+              <div class="col-md-12">
                 <div class="input-group">
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-comment"></i>
                   </span>
-                  <textarea id="tag-in" required minlength="5" name = 'cmt'></textarea>
+                  <textarea placeholder = 'type your feedback here.....' class="form-control input-lg" required minlength="5" name = 'cmt'></textarea>
+                </div>
+                </div>
                 </div>
               
             <div class="form-group">
