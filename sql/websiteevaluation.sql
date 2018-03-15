@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2018 at 05:22 AM
+-- Generation Time: Mar 15, 2018 at 08:19 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -40,7 +40,8 @@ CREATE TABLE `feedback` (
 
 INSERT INTO `feedback` (`fid`, `uid`, `feedback`) VALUES
 (1, '1', 'asdfasdfasdfasdf'),
-(2, '1', 'good website');
+(2, '1', 'good website'),
+(3, '1', 'good and bad');
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,15 @@ INSERT INTO `webcomment` (`comment_id`, `web_id`, `user_id`, `comment`, `score`,
 (108, 2, '1', 'dfgdfg', 8.5, 'p'),
 (109, 2, '1', 'dfgdfg', 5.5, 'p'),
 (110, 2, '1', 'dfgdfg', 6.5, 'p'),
-(111, 2, '1', 'dfgdfg', 7, 'p');
+(111, 2, '1', 'dfgdfg', 7, 'p'),
+(112, 1, '1', 'good', 8.5, 'positive'),
+(113, 1, '1', 'dfgdfg', 0, 'p'),
+(114, 1, '1', 'good', 8.5, 'positive'),
+(115, 3, '1', 'bad', 1.5, 'negative'),
+(116, 3, '1', 'bad', 1.5, 'negative'),
+(117, 3, '1', 'good', 8.5, 'positive'),
+(118, 4, '1', 'good', 8.5, 'positive'),
+(119, 4, '1', 'excellent', 9.5, 'positive');
 
 --
 -- Triggers `webcomment`
@@ -143,10 +152,10 @@ CREATE TABLE `websites` (
 --
 
 INSERT INTO `websites` (`website_name`, `web_id`, `add_by_user`, `tags`, `avg_score`, `remark`) VALUES
-('https://yahoo.com', 1, '1', 'search,bad,hard', 6.5, 'positive'),
+('https://yahoo.com', 1, '1', 'search,bad,hard', 6.08333, 'positive'),
 ('https://glyphicons.bootstrapcheatsheets.com/', 2, '1', 'bad,good,icons', 6.9, 'positive'),
-('google.co.in', 3, '1', 'search,engi,easy', 5, 'neutral'),
-('http://www.geeksengine.com', 4, '1', 'website,web', 1.4, 'totallynegative');
+('google.co.in', 3, '1', 'search,engi,easy', 3.83333, 'negative'),
+('http://www.geeksengine.com', 4, '1', 'website,web', 9, 'totallypositive');
 
 --
 -- Indexes for dumped tables
@@ -191,13 +200,13 @@ ALTER TABLE `websites` ADD FULLTEXT KEY `tags` (`tags`);
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `fid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `fid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `webcomment`
 --
 ALTER TABLE `webcomment`
-  MODIFY `comment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `comment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT for table `websites`
