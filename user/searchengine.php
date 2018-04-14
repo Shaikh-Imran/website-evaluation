@@ -186,7 +186,7 @@
 
 
 
-        $("#search").html("searching..");
+        $("#search").html("Searching..");
         $("#search").attr("disabled", true);
 
         var type = "like";
@@ -219,7 +219,7 @@
      
 
         // console.log(searchWebsite);
-        $("#search").html("Search searchWebsite");
+        $("#search").html("Search Website");
         $("#search").attr("disabled", false);
 
 

@@ -149,7 +149,7 @@
 				while($row = mysqli_fetch_assoc($result)) {
 					echo "<tr>
 					<td>".$row['web_id']."</td>
-					<td><a href='".$row['website_name']."' target='_blank'><i class='glyphicon glyphicon-share'>go</i></a></td>
+					<td><a href='".$row['website_name']."' target='_blank'><i class='glyphicon glyphicon-link'>go</i></a></td>
 					<td>".$row['website_name']."</td>
 					<td>".$row['avg_score']."</td>
 					<td><img class = 'imgs img-responsive' src='../img/".$row['remark'].".png' alt ='".$row['remark']."' />
