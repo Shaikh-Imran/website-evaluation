@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="js/parallax.min.js"></script>
+  
+
+  <style>
+
+  
+    .parallax-window {
+    min-height: 600px;
+    min-width: 700px;
+    background: transparent;
+}
+.infos{
+    z-index: 10;
+    position: relative;
+    text-align: center;
+    padding-top: 300px;
+ 
+    
+
+}
+.infos > h1{
+    z-index: 10;
+    color: white;
+    background: rgba(54, 25, 25, .6);
+    border: 3px solid whitesmoke;
+
+
+    /* display: inline; */
+    padding: 10px;
+    font-size: 50px;
+    
+
+}
+.sec{
+    padding: 15px;
+
+    font-family: sans-serif;
+    font-size: 1.1em;
+}
+.secdark{
+    padding: 15px;
+    color: white;
+    background-color:rgb(42, 48, 48);
+    font-family: sans-serif;
+    font-size: 1.1em;
+}
+  </style>
+</head>
+<body>
+
+    <div class="my-nav"></div>
+    
+  
+<div class="container"> 
+
+   <div class="parallax-window" data-parallax="scroll" data-z-index = '6' data-image-src="img/bg0.jpg" data-bleed="10">
+        <div class="infos">
+        <h1 >WELCOME TO WEBSITE EVALUATION</h1>
+    </div>
+    </div>
+    <section class = 'sec'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, accusantium ab? Ad dolorum veniam blanditiis soluta! Aperiam dignissimos sequi quas atque consequuntur quia officiis? Voluptatem dolore sit ipsam commodi aperiam </section>
+    <div class="parallax-window" data-parallax="scroll" data-z-index = '6' data-image-src="img/bg1.jpg"></div>
+    <section class = 'secdark'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, accusantium ab? Ad dolorum veniam blanditiis soluta! Aperiam dignissimos sequi quas atque consequuntur quia officiis? Voluptatem dolore sit ipsam commodi aperiam </section>
+    <div class="parallax-window" data-parallax="scroll" data-z-index = '6' data-image-src="img/bg3.jpg" data-bleed="10">
+        <div class="infos">
+        <h1>tested by you</h1>
+    </div>
+    </div>
+
+</div>
+
+
+<script>
+           //     $(function(){
+           //     $(".my-nav").load("nav.html");
+           // });
+        </script>
+</body>
+</html>
